@@ -1,10 +1,10 @@
-# 📊 Analyse des Abonnés Orange Burkina Faso
+#  Analyse des Abonnés Orange Burkina Faso
 
 Projet d'analyse de données réalisé avec **Python** et **pandas**, simulant le travail d'un data analyst junior dans un opérateur télécom burkinabè.
 
 ---
 
-## 🎯 Objectif
+##  Objectif
 
 Analyser un dataset d'abonnés fictifs d'Orange Burkina Faso pour produire des insights business :
 - Nettoyer et préparer les données brutes
@@ -15,7 +15,7 @@ Analyser un dataset d'abonnés fictifs d'Orange Burkina Faso pour produire des i
 
 ---
 
-## 🗂️ Structure du projet
+##  Structure du projet
 
 ```
 orange-burkina-analysis/
@@ -38,7 +38,7 @@ orange-burkina-analysis/
 
 ---
 
-## 🛠️ Compétences démontrées
+## Compétences démontrées
 
 | Compétence | Détail |
 |---|---|
@@ -52,7 +52,7 @@ orange-burkina-analysis/
 
 ---
 
-## 📁 Description des données
+## Description des données
 
 ### abonnes.csv
 | Colonne | Type | Description |
@@ -85,7 +85,7 @@ orange-burkina-analysis/
 
 ---
 
-## 🚀 Comment exécuter le projet
+## Comment exécuter le projet
 
 ### Prérequis
 ```
@@ -111,7 +111,7 @@ Le script crée automatiquement les fichiers CSV dans `data/` et exporte les ré
 
 ---
 
-## 📈 Résultats principaux
+## Résultats principaux
 
 ### Segmentation des abonnés par solde
 | Segment | Critère solde | Abonnés |
@@ -139,7 +139,7 @@ Le script crée automatiquement les fichiers CSV dans `data/` et exporte les ré
 
 ---
 
-## 💡 Observations
+## Observations
 
 - **Bobo** a le solde moyen le plus faible et le plus fort taux d'inactifs
 - **Ouaga** concentre les abonnés avec les soldes les plus élevés
@@ -148,9 +148,9 @@ Le script crée automatiquement les fichiers CSV dans `data/` et exporte les ré
 
 ---
 
-## 👤 Auteur
+## Auteur
 
-**Franck SAWADOGO**
+**Franck Marie Ghislain SAWADOGO**
 Étudiant GEI — IST Ouagadougou
 En formation Data Analytics
 
