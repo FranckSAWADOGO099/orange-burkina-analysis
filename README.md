@@ -21,7 +21,7 @@ Analyser un dataset d'abonnés fictifs d'Orange Burkina Faso pour produire des i
 orange-burkina-analysis/
 │
 ├── data/
-│   ├── abonnes.csv          # Dataset principal — 15 abonnés fictifs
+│   ├── abonnes.csv          # Dataset principal - 15 abonnés fictifs
 │   ├── forfaits.csv         # Table des forfaits disponibles
 │   └── transactions.csv     # Historique des transactions Orange Money
 │
