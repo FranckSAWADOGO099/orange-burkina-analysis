@@ -96,7 +96,7 @@ numpy
 
 ### Installation
 ```bash
-git clone https://github.com/TON_USERNAME/orange-burkina-analysis.git
+git clone https://github.com/FranckSAWADOGO099/orange-burkina-analysis.git
 cd orange-burkina-analysis
 pip install pandas numpy
 ```
