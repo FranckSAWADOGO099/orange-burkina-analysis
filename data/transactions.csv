@@ -1,0 +1,9 @@
+id_abonne,montant,type
+1,5000,envoi
+1,2500,retrait
+2,1000,envoi
+3,15000,envoi
+3,8000,retrait
+5,25000,envoi
+6,3000,envoi
+7,12000,retrait

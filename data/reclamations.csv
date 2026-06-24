@@ -1,0 +1,6 @@
+id_abonne,type_reclamation,resolue
+1,réseau,True
+2,facturation,False
+2,réseau,True
+4,réseau,False
+5,facturation,True
