@@ -152,7 +152,7 @@ Le script crée automatiquement les fichiers CSV dans `data/` et exporte les ré
 
 **Franck Marie Ghislain SAWADOGO**
 Étudiant GEI - IST Ouagadougou
-En formation Data Analytics
+En formation Data Analyst
 
 ---
 
