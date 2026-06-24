@@ -1,4 +1,4 @@
-id_forfait,nom_forfait,prix_fcfa,data_go
-1,Orange Liberté,1500,2.0
-2,Orange Max 5Go,3500,5.0
-3,Orange Max 10Go,6000,10.0
+id_forfait,nom_forfait,prix_fcfa,data_incluse_go,appels_inclus
+1,Orange Liberté,1500,2.0,30
+2,Orange Max 5Go,3500,5.0,60
+3,Orange Max 10Go,6000,10.0,120

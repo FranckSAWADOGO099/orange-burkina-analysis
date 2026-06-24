@@ -1,0 +1,16 @@
+nom,ville,solde,forfait,actif,appels_mois,data_go,anciennete_mois,niveau_solde,fidelite,score_client,rang
+Kofi Ouattara,Ouaga,12000,Orange Max 10Go,True,102,9.8,48,Premium,Fidèle,174.8,Platine
+Adama Bambara,Ouaga,9500,Orange Max 10Go,True,95,9.1,42,Premium,Fidèle,159.5,Platine
+Moussa Tapsoba,Ouaga,7800,Orange Max 10Go,True,88,8.5,36,Standard,Fidèle,146.0,Platine
+Mariam Sawadogo,Ouaga,5000,Orange Max 10Go,True,67,7.5,18,Standard,Régulier,115.8,Platine
+Clarisse Toe,Banfora,5800,Orange Max 10Go,True,73,6.2,28,Standard,Régulier,111.0,Platine
+Binta Kabore,Koudougou,4200,Orange Max 5Go,True,51,3.9,30,Standard,Régulier,78.6,Platine
+Aminata Ouedraogo,Ouaga,3750,Orange Max 5Go,True,45,3.2,24,Standard,Régulier,65.75,Or
+Rasmane Ilboudo,Koudougou,3100,Orange Max 5Go,True,42,2.8,20,Standard,Régulier,57.9,Or
+Salif Zongo,Banfora,2500,Orange Liberté,True,34,2.1,15,Faible,Régulier,44.6,Argent
+Ibrahim Kone,Koudougou,0,Orange Liberté,True,23,1.2,12,Critique,Régulier,27.2,Argent
+Aissata Nana,Bobo,1500,Orange Liberté,True,19,0.8,8,Faible,Nouveau,21.1,Bronze
+Seydou Traore,Bobo,1200,Orange Liberté,False,12,0.5,6,Faible,Nouveau,14.0,Bronze
+Amina Diallo,Ouaga,650,Orange Max 5Go,False,8,0.3,2,Critique,Nouveau,7.85,Bronze
+Fatima Coulibaly,Bobo,0,Orange Max 5Go,False,0,0.0,3,Critique,Nouveau,1.5,Bronze
+Safi Ouoba,Banfora,0,Orange Liberté,False,0,0.0,1,Critique,Nouveau,0.5,Bronze

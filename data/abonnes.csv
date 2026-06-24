@@ -1,9 +1,16 @@
-nom,ville,solde,forfait,actif
-Aminata,Ouaga,3750,Orange Max 5Go,True
-Seydou,Bobo,1200,Orange Liberté,False
-Mariam,Ouaga,8500,Orange Max 10Go,True
-Ibrahim,Koudougou,500,Orange Liberté,True
-Fatima,Bobo,0,Orange Max 5Go,False
-Kofi,Ouaga,12000,Orange Max 10Go,True
-Salif,Banfora,2500,Orange Liberté,True
-Amina,Ouaga,650,Orange Max 5Go,False
+id_abonne,nom,ville,solde,forfait,actif,appels_mois,data_go,anciennete_mois,id_forfait
+1,Aminata Ouedraogo,Ouaga,3750,Orange Max 5Go,True,45,3.2,24,2
+2,Seydou Traore,Bobo,1200,Orange Liberté,False,12,0.5,6,1
+3,Mariam Sawadogo,Ouaga,5000,Orange Max 10Go,True,67,7.5,18,3
+4,Ibrahim Kone,Koudougou,0,Orange Liberté,True,23,1.2,12,1
+5,Fatima Coulibaly,Bobo,0,Orange Max 5Go,False,0,0.0,3,2
+6,Kofi Ouattara,Ouaga,12000,Orange Max 10Go,True,102,9.8,48,3
+7,Salif Zongo,Banfora,2500,Orange Liberté,True,34,2.1,15,1
+8,Amina Diallo,Ouaga,650,Orange Max 5Go,False,8,0.3,2,2
+9,Adama Bambara,Ouaga,9500,Orange Max 10Go,True,95,9.1,42,3
+10,Safi Ouoba,Banfora,0,Orange Liberté,False,0,0.0,1,1
+11,Binta Kabore,Koudougou,4200,Orange Max 5Go,True,51,3.9,30,2
+12,Moussa Tapsoba,Ouaga,7800,Orange Max 10Go,True,88,8.5,36,3
+13,Aissata Nana,Bobo,1500,Orange Liberté,True,19,0.8,8,1
+14,Rasmane Ilboudo,Koudougou,3100,Orange Max 5Go,True,42,2.8,20,2
+15,Clarisse Toe,Banfora,5800,Orange Max 10Go,True,73,6.2,28,3
