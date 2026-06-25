@@ -1,8 +1,8 @@
 # ============================================================
-# PROJET 1 — ANALYSE DES ABONNÉS ORANGE BURKINA FASO
-# Auteur  : Franck SAWADOGO
-# Outils  : Python, pandas, numpy
-# Données : Dataset fictif abonnés Orange Burkina
+# PROJET 1 : ANALYSE DES ABONNÉS ORANGE BURKINA FASO
+# Auteur   : Franck SAWADOGO
+# Outils   : Python, pandas, numpy
+# Données  : Dataset fictif abonnés Orange Burkina
 # ============================================================
 
 import pandas as pd
@@ -10,16 +10,15 @@ import numpy as np
 import os
 import re
 
-# ── Configuration ────────────────────────────────────────────
+# Configuration
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 print("=" * 60)
 print("  ANALYSE ABONNÉS ORANGE BURKINA FASO")
 print("=" * 60)
 
-
 # ============================================================
-# ÉTAPE 1 — CRÉATION DES DONNÉES
+# ÉTAPE 1 - CRÉATION DES DONNÉES
 # ============================================================
 
 def creer_donnees():
@@ -64,24 +63,24 @@ def creer_donnees():
     pd.DataFrame(abonnes).to_csv("../data/abonnes.csv",      index=False, encoding="utf-8")
     pd.DataFrame(forfaits).to_csv("../data/forfaits.csv",     index=False, encoding="utf-8")
     pd.DataFrame(transactions).to_csv("../data/transactions.csv", index=False, encoding="utf-8")
-    print("✓ Fichiers CSV créés dans data/")
+    print("Fichiers CSV créés dans data")
 
 creer_donnees()
 
+# ============================================================
+# ÉTAPE 2 - CHARGEMENT ET EXPLORATION
+# ============================================================
 
-# ============================================================
-# ÉTAPE 2 — CHARGEMENT ET EXPLORATION
-# ============================================================
-print("\n" + "─" * 60)
+print("─" * 60)
 print("ÉTAPE 2 — CHARGEMENT ET EXPLORATION")
 print("─" * 60)
 
-df          = pd.read_csv("../data/abonnes.csv")
+df = pd.read_csv("../data/abonnes.csv")
 df_forfaits = pd.read_csv("../data/forfaits.csv")
-df_trans    = pd.read_csv("../data/transactions.csv")
+df_trans = pd.read_csv("../data/transactions.csv")
 
-print(f"Abonnés chargés     : {len(df)} lignes, {len(df.columns)} colonnes")
-print(f"Forfaits chargés    : {len(df_forfaits)} lignes")
+print(f"Abonnés chargés : {len(df)} lignes, {len(df.columns)} colonnes")
+print(f"Forfaits chargés : {len(df_forfaits)} lignes")
 print(f"Transactions chargées : {len(df_trans)} lignes")
 print()
 print("Aperçu des données :")
@@ -92,9 +91,10 @@ print(df.info())
 
 
 # ============================================================
-# ÉTAPE 3 — NETTOYAGE DE DONNÉES
+# ÉTAPE 3 - NETTOYAGE DE DONNÉES
 # ============================================================
-print("\n" + "─" * 60)
+
+print("─" * 60)
 print("ÉTAPE 3 — NETTOYAGE DE DONNÉES")
 print("─" * 60)
 
@@ -115,11 +115,11 @@ def solde_invalid(valeur):
         return True
 
 def pipeline_nettoyage(df):
-    print(f"Avant nettoyage    : {len(df)} lignes")
+    print(f"Avant nettoyage : {len(df)} lignes")
 
     # Doublons
     df = df.drop_duplicates()
-    print(f"Après doublons     : {len(df)} lignes")
+    print(f"Après doublons : {len(df)} lignes")
 
     # Types
     df["solde"] = pd.to_numeric(df["solde"], errors="coerce")
@@ -130,7 +130,7 @@ def pipeline_nettoyage(df):
 
     # Valeurs impossibles
     df = df[df["solde"] >= 0]
-    print(f"Après nettoyage    : {len(df)} lignes")
+    print(f"Après nettoyage : {len(df)} lignes")
 
     # Standardisation texte
     df["nom"]     = df["nom"].apply(lambda x: "Inconnu" if nom_invalid(x) else str(x).title())
@@ -144,17 +144,18 @@ df = pipeline_nettoyage(df)
 
 
 # ============================================================
-# ÉTAPE 4 — FILTRAGE ET SEGMENTATION
+# ÉTAPE 4 - FILTRAGE ET SEGMENTATION
 # ============================================================
-print("\n" + "─" * 60)
+
+print("─" * 60)
 print("ÉTAPE 4 — FILTRAGE ET SEGMENTATION")
 print("─" * 60)
 
 # Abonnés actifs
 actifs = df[df["actif"] == True]
-print(f"Abonnés actifs     : {len(actifs)}")
-print(f"Abonnés inactifs   : {len(df) - len(actifs)}")
-print(f"Taux d'activité    : {round(len(actifs)/len(df)*100, 1)}%")
+print(f"Abonnés actifs : {len(actifs)}")
+print(f"Abonnés inactifs : {len(df) - len(actifs)}")
+print(f"Taux d'activité : {round(len(actifs)/len(df)*100, 1)}%")
 print()
 
 # Abonnés à risque — actifs avec solde faible
@@ -170,8 +171,9 @@ print(premium[["nom", "ville", "solde", "forfait"]].to_string())
 
 
 # ============================================================
-# ÉTAPE 5 — AGRÉGATIONS ET KPIs PAR VILLE ET FORFAIT
+# ÉTAPE 5 - AGRÉGATIONS ET KPIs PAR VILLE ET FORFAIT
 # ============================================================
+
 print("\n" + "─" * 60)
 print("ÉTAPE 5 — AGRÉGATIONS ET KPIs")
 print("─" * 60)
@@ -188,13 +190,14 @@ print()
 # Performance par ville
 print("=== PERFORMANCE PAR VILLE ===")
 perf_ville = df.groupby("ville").agg(
-    nb_abonnes    =("nom",             "count"),
-    solde_moyen   =("solde",           "mean"),
-    solde_total   =("solde",           "sum"),
-    appels_moyens =("appels_mois",     "mean"),
-    data_moyenne  =("data_go",         "mean"),
-    taux_actifs   =("actif",           "mean")
+    nb_abonnes    = ("nom", "count"),
+    solde_moyen   = ("solde", "mean"),
+    solde_total   = ("solde", "sum"),
+    appels_moyens = ("appels_mois", "mean"),
+    data_moyenne  = ("data_go", "mean"),
+    taux_actifs   = ("actif", "mean")
 ).round(2).reset_index()
+
 perf_ville["taux_actifs"] = (perf_ville["taux_actifs"] * 100).round(1)
 perf_ville = perf_ville.sort_values("solde_total", ascending=False)
 print(perf_ville.to_string())
@@ -203,18 +206,20 @@ print()
 # Performance par forfait
 print("=== PERFORMANCE PAR FORFAIT ===")
 perf_forfait = df.groupby("forfait").agg(
-    nb_abonnes   =("nom",         "count"),
-    solde_moyen  =("solde",       "mean"),
+    nb_abonnes   =("nom", "count"),
+    solde_moyen  =("solde", "mean"),
     appels_moyens=("appels_mois", "mean"),
-    data_moyenne =("data_go",     "mean")
+    data_moyenne =("data_go", "mean")
 ).round(2).reset_index()
+
 perf_forfait = perf_forfait.sort_values("solde_moyen", ascending=False)
 print(perf_forfait.to_string())
 
 
 # ============================================================
-# ÉTAPE 6 — FUSION DES TABLES
+# ÉTAPE 6 - FUSION DES TABLES
 # ============================================================
+
 print("\n" + "─" * 60)
 print("ÉTAPE 6 — FUSION DES TABLES")
 print("─" * 60)
@@ -245,10 +250,11 @@ print(df_complet.groupby("type")["montant"].agg(
 
 
 # ============================================================
-# ÉTAPE 7 — COLONNES CALCULÉES ET SCORE CLIENT
+# ÉTAPE 7 - COLONNES CALCULÉES ET SCORE CLIENT
 # ============================================================
+
 print("\n" + "─" * 60)
-print("ÉTAPE 7 — COLONNES CALCULÉES ET SCORE CLIENT")
+print("ÉTAPE 7 - COLONNES CALCULÉES ET SCORE CLIENT")
 print("─" * 60)
 
 # Niveau de solde
@@ -307,17 +313,18 @@ print(df.groupby("niveau_solde")["score_client"].mean().round(2))
 # ============================================================
 # ÉTAPE 8 — RAPPORT FINAL ET EXPORT
 # ============================================================
+
 print("\n" + "─" * 60)
 print("ÉTAPE 8 — RAPPORT FINAL")
 print("─" * 60)
 
 print("=" * 60)
-print("  SYNTHÈSE — ORANGE BURKINA FASO")
+print("  SYNTHÈSE - ORANGE BURKINA FASO")
 print("=" * 60)
-print(f"Total abonnés      : {len(df)}")
-print(f"Abonnés actifs     : {len(df[df['actif']])} ({round(df['actif'].mean()*100,1)}%)")
-print(f"Solde moyen        : {round(df['solde'].mean(),2):,} FCFA")
-print(f"Solde total        : {int(df['solde'].sum()):,} FCFA")
+print(f"Total abonnés : {len(df)}")
+print(f"Abonnés actifs : {len(df[df['actif']])} ({round(df['actif'].mean()*100,1)}%)")
+print(f"Solde moyen : {round(df['solde'].mean(),2):,} FCFA")
+print(f"Solde total : {int(df['solde'].sum()):,} FCFA")
 print()
 print("Répartition par rang :")
 print(df["rang"].value_counts())
@@ -329,15 +336,15 @@ print(f"Ville la plus rentable : {perf_ville.iloc[0]['ville']}")
 print(f"Forfait le plus souscrit : {df['forfait'].value_counts().index[0]}")
 print()
 
-# ── Recommandations ──────────────────────────────────────────
+# Recommandations 
 print("=== RECOMMANDATIONS ===")
 nb_critique = len(df[df["niveau_solde"] == "Critique"])
 nb_inactifs = len(df[~df["actif"]])
-print(f"1. {nb_critique} abonnés en zone critique — campagne recharge urgente")
-print(f"2. {nb_inactifs} abonnés inactifs — programme réactivation ciblé")
-print(f"3. Ouaga concentre la valeur — priorité upselling Orange Max 10Go")
+print(f"1. {nb_critique} abonnés en zone critique - campagne recharge urgente")
+print(f"2. {nb_inactifs} abonnés inactifs - programme réactivation ciblé")
+print(f"3. Ouaga concentre la valeur - priorité upselling Orange Max 10Go")
 
-# ── Export ───────────────────────────────────────────────────
+# Export
 rapport_final = df[[
     "nom", "ville", "solde", "forfait", "actif",
     "appels_mois", "data_go", "anciennete_mois",
@@ -349,10 +356,10 @@ perf_ville.to_csv("../output/performance_villes.csv",    index=False, encoding="
 perf_forfait.to_csv("../output/performance_forfaits.csv", index=False, encoding="utf-8")
 
 print()
-print("✓ Fichiers exportés dans output/")
-print("  → rapport_final.csv")
-print("  → performance_villes.csv")
-print("  → performance_forfaits.csv")
+print("Fichiers exportés dans output/")
+print("rapport_final.csv")
+print("performance_villes.csv")
+print("performance_forfaits.csv")
 print()
 print("=" * 60)
 print("  ANALYSE TERMINÉE")
