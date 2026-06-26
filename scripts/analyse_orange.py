@@ -72,7 +72,7 @@ creer_donnees()
 # ============================================================
 
 print("-" * 60)
-print("ÉTAPE 2 — CHARGEMENT ET EXPLORATION")
+print("ÉTAPE 2 - CHARGEMENT ET EXPLORATION")
 print("-" * 60)
 
 df = pd.read_csv("../data/abonnes.csv")
