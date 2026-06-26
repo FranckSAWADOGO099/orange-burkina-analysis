@@ -358,9 +358,12 @@ rapport_final = df[[
     "niveau_solde", "fidelite", "score_client", "rang"
 ]].sort_values("score_client", ascending=False)
 
-rapport_final.to_csv("../output/rapport_final.csv", index=False, encoding="utf-8")
-perf_ville.to_csv("../output/performance_villes.csv",    index=False, encoding="utf-8")
-perf_forfait.to_csv("../output/performance_forfaits.csv", index=False, encoding="utf-8")
+rapport_final.to_csv("C:\Users\Franck SAWADOGO\Documents\VS Code-programmes\PYTHON\orange-burkina-analysis/output/rapport_final.csv",
+                     index=False, encoding="utf-8")
+perf_ville.to_csv("C:\Users\Franck SAWADOGO\Documents\VS Code-programmes\PYTHON\orange-burkina-analysis/output/performance_villes.csv",    
+                  index=False, encoding="utf-8")
+perf_forfait.to_csv("C:\Users\Franck SAWADOGO\Documents\VS Code-programmes\PYTHON\orange-burkina-analysis/output/performance_forfaits.csv", 
+                    index=False, encoding="utf-8")
 
 print()
 print("Fichiers exportés dans output/")
