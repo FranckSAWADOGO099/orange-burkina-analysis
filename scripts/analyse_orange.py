@@ -71,9 +71,9 @@ creer_donnees()
 # ÉTAPE 2 - CHARGEMENT ET EXPLORATION
 # ============================================================
 
-print("─" * 60)
+print("-" * 60)
 print("ÉTAPE 2 — CHARGEMENT ET EXPLORATION")
-print("─" * 60)
+print("-" * 60)
 
 df = pd.read_csv("../data/abonnes.csv")
 df_forfaits = pd.read_csv("../data/forfaits.csv")
@@ -94,21 +94,27 @@ print(df.info())
 # ÉTAPE 3 - NETTOYAGE DE DONNÉES
 # ============================================================
 
-print("─" * 60)
-print("ÉTAPE 3 — NETTOYAGE DE DONNÉES")
-print("─" * 60)
+print("-" * 60)
+print("ÉTAPE 3 - NETTOYAGE DE DONNÉES")
+print("-" * 60)
 
 def nom_invalid(valeur):
-    if pd.isna(valeur): return True
+    if pd.isna(valeur): 
+        return True
     valeur = str(valeur).strip()
-    if valeur == "": return True
-    if valeur.isnumeric(): return True
-    if re.match(r'^[#\[&@?!]', valeur): return True
-    if valeur.lower() in ["null", "n/a", "none", "-", "???"]: return True
+    if valeur == "": 
+        return True
+    if valeur.isnumeric(): 
+        return True
+    if re.match(r'^[#\[&@?!]', valeur): 
+        return True
+    if valeur.lower() in ["null", "n/a", "none", "-", "???"]: 
+        return True
     return False
 
 def solde_invalid(valeur):
-    if pd.isna(valeur): return True
+    if pd.isna(valeur): 
+        return True
     try:
         return float(str(valeur).strip()) < 0
     except:
@@ -133,8 +139,8 @@ def pipeline_nettoyage(df):
     print(f"Après nettoyage : {len(df)} lignes")
 
     # Standardisation texte
-    df["nom"]     = df["nom"].apply(lambda x: "Inconnu" if nom_invalid(x) else str(x).title())
-    df["ville"]   = df["ville"].str.strip().str.capitalize()
+    df["nom"] = df["nom"].apply(lambda x: "Inconnu" if nom_invalid(x) else str(x).title())
+    df["ville"] = df["ville"].str.strip().str.capitalize()
     df["forfait"] = df["forfait"].str.strip().str.title()
 
     print(f"Valeurs manquantes : {df.isnull().sum().sum()}")
@@ -147,9 +153,9 @@ df = pipeline_nettoyage(df)
 # ÉTAPE 4 - FILTRAGE ET SEGMENTATION
 # ============================================================
 
-print("─" * 60)
-print("ÉTAPE 4 — FILTRAGE ET SEGMENTATION")
-print("─" * 60)
+print("-" * 60)
+print("ÉTAPE 4 - FILTRAGE ET SEGMENTATION")
+print("-" * 60)
 
 # Abonnés actifs
 actifs = df[df["actif"] == True]
@@ -158,7 +164,7 @@ print(f"Abonnés inactifs : {len(df) - len(actifs)}")
 print(f"Taux d'activité : {round(len(actifs)/len(df)*100, 1)}%")
 print()
 
-# Abonnés à risque — actifs avec solde faible
+# Abonnés à risque - actifs avec solde faible
 a_risque = df[df["actif"] & (df["solde"] < 1000)]
 print(f"Abonnés à risque (actifs solde < 1000 FCFA) : {len(a_risque)}")
 print(a_risque[["nom", "ville", "solde", "anciennete_mois"]].to_string())
@@ -174,28 +180,28 @@ print(premium[["nom", "ville", "solde", "forfait"]].to_string())
 # ÉTAPE 5 - AGRÉGATIONS ET KPIs PAR VILLE ET FORFAIT
 # ============================================================
 
-print("\n" + "─" * 60)
-print("ÉTAPE 5 — AGRÉGATIONS ET KPIs")
-print("─" * 60)
+print("\n" + "-" * 60)
+print("ÉTAPE 5 - AGRÉGATIONS ET KPIs")
+print("-" * 60)
 
 # KPIs globaux
 print("=== KPIs GLOBAUX ===")
-print(f"Solde moyen        : {round(df['solde'].mean(), 2):,} FCFA")
-print(f"Solde total        : {int(df['solde'].sum()):,} FCFA")
+print(f"Solde moyen : {round(df['solde'].mean(), 2):,} FCFA")
+print(f"Solde total : {int(df['solde'].sum()):,} FCFA")
 print(f"Appels moyens/mois : {round(df['appels_mois'].mean(), 1)}")
-print(f"Data moyenne       : {round(df['data_go'].mean(), 2)} Go")
+print(f"Data moyenne : {round(df['data_go'].mean(), 2)} Go")
 print(f"Ancienneté moyenne : {round(df['anciennete_mois'].mean(), 1)} mois")
 print()
 
 # Performance par ville
 print("=== PERFORMANCE PAR VILLE ===")
 perf_ville = df.groupby("ville").agg(
-    nb_abonnes    = ("nom", "count"),
-    solde_moyen   = ("solde", "mean"),
-    solde_total   = ("solde", "sum"),
+    nb_abonnes = ("nom", "count"),
+    solde_moyen = ("solde", "mean"),
+    solde_total = ("solde", "sum"),
     appels_moyens = ("appels_mois", "mean"),
-    data_moyenne  = ("data_go", "mean"),
-    taux_actifs   = ("actif", "mean")
+    data_moyenne = ("data_go", "mean"),
+    taux_actifs = ("actif", "mean")
 ).round(2).reset_index()
 
 perf_ville["taux_actifs"] = (perf_ville["taux_actifs"] * 100).round(1)
@@ -206,10 +212,10 @@ print()
 # Performance par forfait
 print("=== PERFORMANCE PAR FORFAIT ===")
 perf_forfait = df.groupby("forfait").agg(
-    nb_abonnes   =("nom", "count"),
-    solde_moyen  =("solde", "mean"),
-    appels_moyens=("appels_mois", "mean"),
-    data_moyenne =("data_go", "mean")
+    nb_abonnes = ("nom", "count"),
+    solde_moyen = ("solde", "mean"),
+    appels_moyens = ("appels_mois", "mean"),
+    data_moyenne = ("data_go", "mean")
 ).round(2).reset_index()
 
 perf_forfait = perf_forfait.sort_values("solde_moyen", ascending=False)
@@ -220,9 +226,9 @@ print(perf_forfait.to_string())
 # ÉTAPE 6 - FUSION DES TABLES
 # ============================================================
 
-print("\n" + "─" * 60)
-print("ÉTAPE 6 — FUSION DES TABLES")
-print("─" * 60)
+print("\n" + "-" * 60)
+print("ÉTAPE 6 - FUSION DES TABLES")
+print("-" * 60)
 
 # Abonnés + Forfaits
 df_complet = pd.merge(df, df_forfaits, on="id_forfait", how="left")
@@ -244,18 +250,15 @@ print()
 
 # Transactions par type
 print("=== TRANSACTIONS PAR TYPE ===")
-print(df_complet.groupby("type")["montant"].agg(
-    total="sum", moyenne="mean", nombre="count"
-).round(2))
-
+print(df_complet.groupby("type")["montant"].agg(total="sum", moyenne="mean", nombre="count").round(2))
 
 # ============================================================
 # ÉTAPE 7 - COLONNES CALCULÉES ET SCORE CLIENT
 # ============================================================
 
-print("\n" + "─" * 60)
+print("\n" + "-" * 60)
 print("ÉTAPE 7 - COLONNES CALCULÉES ET SCORE CLIENT")
-print("─" * 60)
+print("-" * 60)
 
 # Niveau de solde
 df["niveau_solde"] = np.where(
@@ -266,9 +269,12 @@ df["niveau_solde"] = np.where(
 
 # Catégorie fidélité
 def categorie_fidelite(mois):
-    if mois >= 36:   return "Fidèle"
-    elif mois >= 12: return "Régulier"
-    else:            return "Nouveau"
+    if mois >= 36:   
+        return "Fidèle"
+    elif mois >= 12: 
+        return "Régulier"
+    else:            
+        return "Nouveau"
 
 df["fidelite"] = df["anciennete_mois"].apply(categorie_fidelite)
 
@@ -276,16 +282,17 @@ df["fidelite"] = df["anciennete_mois"].apply(categorie_fidelite)
 def statut_activite(ligne):
     if ligne["actif"]:
         return f"Actif depuis {ligne['anciennete_mois']} mois"
-    return f"Inactif depuis {ligne['anciennete_mois']} mois"
+    else:
+        return f"Inactif depuis {ligne['anciennete_mois']} mois"
 
 df["statut"] = df.apply(statut_activite, axis=1)
 
 # Score client
 def calculer_score(ligne):
     return round(
-        ligne["appels_mois"]     * 0.4 +
-        ligne["data_go"]         * 10  +
-        ligne["solde"]           / 1000 +
+        ligne["appels_mois"] * 0.4 +
+        ligne["data_go"] * 10 +
+        ligne["solde"]/1000 +
         ligne["anciennete_mois"] * 0.5,
         2
     )
@@ -311,15 +318,15 @@ print(df.groupby("niveau_solde")["score_client"].mean().round(2))
 
 
 # ============================================================
-# ÉTAPE 8 — RAPPORT FINAL ET EXPORT
+# ÉTAPE 8 - RAPPORT FINAL ET EXPORT
 # ============================================================
 
-print("\n" + "─" * 60)
-print("ÉTAPE 8 — RAPPORT FINAL")
-print("─" * 60)
+print("\n" + "-" * 60)
+print("ÉTAPE 8 - RAPPORT FINAL")
+print("-" * 60)
 
 print("=" * 60)
-print("  SYNTHÈSE - ORANGE BURKINA FASO")
+print("SYNTHÈSE - ORANGE BURKINA FASO ")
 print("=" * 60)
 print(f"Total abonnés : {len(df)}")
 print(f"Abonnés actifs : {len(df[df['actif']])} ({round(df['actif'].mean()*100,1)}%)")
