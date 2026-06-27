@@ -1,6 +1,6 @@
 # ============================================================
 # PROJET 1 : ANALYSE DES ABONNÉS ORANGE BURKINA FASO
-# Auteur   : Franck SAWADOGO
+# Auteur   : Franck  SAWADOGO
 # Outils   : Python, pandas, numpy
 # Données  : Dataset fictif abonnés Orange Burkina
 # ============================================================
