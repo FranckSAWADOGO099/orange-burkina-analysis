@@ -4,7 +4,6 @@
 # Outils   : Python, pandas, numpy
 # Données  : Dataset fictif abonnés Orange Burkina
 # ============================================================
-
 import pandas as pd
 import numpy as np
 import os
