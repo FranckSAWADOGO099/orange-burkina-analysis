@@ -1,9 +1,10 @@
 # ============================================================
-# PROJET 1 : ANALYSE DES ABONNÉS ORANGE BURKINA FASO
-# Auteur   : Franck  SAWADOGO
-# Outils   : Python, pandas, numpy
-# Données  : Dataset fictif abonnés Orange Burkina
+# PROJET 1 - ANALYSE DES ABONNÉS ORANGE BURKINA FASO
+# Auteur: Franck SAWADOGO
+# Outils: Python, pandas, numpy
+# Données: Dataset fictif abonnés Orange Burkina (9600 abonnés générés)
 # ============================================================
+
 import pandas as pd
 import numpy as np
 import os
@@ -11,66 +12,116 @@ import re
 
 # Configuration
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+os.makedirs("../data", exist_ok=True)
+os.makedirs("../output", exist_ok=True)
 
 print("=" * 60)
 print("  ANALYSE ABONNÉS ORANGE BURKINA FASO")
 print("=" * 60)
 
+
 # ============================================================
-# ÉTAPE 1 - CRÉATION DES DONNÉES
+# ETAPE 1 - CRÉATION DES DONNÉES (9600 abonnés générés)
 # ============================================================
 
 def creer_donnees():
-    abonnes = [
-        {"id_abonne": 1,  "nom": "Aminata Ouedraogo", "ville": "Ouaga",     "solde": 3750,  "forfait": "Orange Max 5Go",  "actif": True,  "appels_mois": 45,  "data_go": 3.2, "anciennete_mois": 24, "id_forfait": 2},
-        {"id_abonne": 2,  "nom": "Seydou Traore",     "ville": "Bobo",      "solde": 1200,  "forfait": "Orange Liberté",  "actif": False, "appels_mois": 12,  "data_go": 0.5, "anciennete_mois": 6,  "id_forfait": 1},
-        {"id_abonne": 3,  "nom": "Mariam Sawadogo",   "ville": "Ouaga",     "solde": 5000,  "forfait": "Orange Max 10Go", "actif": True,  "appels_mois": 67,  "data_go": 7.5, "anciennete_mois": 18, "id_forfait": 3},
-        {"id_abonne": 4,  "nom": "Ibrahim Kone",      "ville": "Koudougou", "solde": 0,     "forfait": "Orange Liberté",  "actif": True,  "appels_mois": 23,  "data_go": 1.2, "anciennete_mois": 12, "id_forfait": 1},
-        {"id_abonne": 5,  "nom": "Fatima Coulibaly",  "ville": "Bobo",      "solde": 0,     "forfait": "Orange Max 5Go",  "actif": False, "appels_mois": 0,   "data_go": 0.0, "anciennete_mois": 3,  "id_forfait": 2},
-        {"id_abonne": 6,  "nom": "Kofi Ouattara",     "ville": "Ouaga",     "solde": 12000, "forfait": "Orange Max 10Go", "actif": True,  "appels_mois": 102, "data_go": 9.8, "anciennete_mois": 48, "id_forfait": 3},
-        {"id_abonne": 7,  "nom": "Salif Zongo",       "ville": "Banfora",   "solde": 2500,  "forfait": "Orange Liberté",  "actif": True,  "appels_mois": 34,  "data_go": 2.1, "anciennete_mois": 15, "id_forfait": 1},
-        {"id_abonne": 8,  "nom": "Amina Diallo",      "ville": "Ouaga",     "solde": 650,   "forfait": "Orange Max 5Go",  "actif": False, "appels_mois": 8,   "data_go": 0.3, "anciennete_mois": 2,  "id_forfait": 2},
-        {"id_abonne": 9,  "nom": "Adama Bambara",     "ville": "Ouaga",     "solde": 9500,  "forfait": "Orange Max 10Go", "actif": True,  "appels_mois": 95,  "data_go": 9.1, "anciennete_mois": 42, "id_forfait": 3},
-        {"id_abonne": 10, "nom": "Safi Ouoba",        "ville": "Banfora",   "solde": 0,     "forfait": "Orange Liberté",  "actif": False, "appels_mois": 0,   "data_go": 0.0, "anciennete_mois": 1,  "id_forfait": 1},
-        {"id_abonne": 11, "nom": "Binta Kabore",      "ville": "Koudougou", "solde": 4200,  "forfait": "Orange Max 5Go",  "actif": True,  "appels_mois": 51,  "data_go": 3.9, "anciennete_mois": 30, "id_forfait": 2},
-        {"id_abonne": 12, "nom": "Moussa Tapsoba",    "ville": "Ouaga",     "solde": 7800,  "forfait": "Orange Max 10Go", "actif": True,  "appels_mois": 88,  "data_go": 8.5, "anciennete_mois": 36, "id_forfait": 3},
-        {"id_abonne": 13, "nom": "Aissata Nana",      "ville": "Bobo",      "solde": 1500,  "forfait": "Orange Liberté",  "actif": True,  "appels_mois": 19,  "data_go": 0.8, "anciennete_mois": 8,  "id_forfait": 1},
-        {"id_abonne": 14, "nom": "Rasmane Ilboudo",   "ville": "Koudougou", "solde": 3100,  "forfait": "Orange Max 5Go",  "actif": True,  "appels_mois": 42,  "data_go": 2.8, "anciennete_mois": 20, "id_forfait": 2},
-        {"id_abonne": 15, "nom": "Clarisse Toe",      "ville": "Banfora",   "solde": 5800,  "forfait": "Orange Max 10Go", "actif": True,  "appels_mois": 73,  "data_go": 6.2, "anciennete_mois": 28, "id_forfait": 3},
+    rng = np.random.default_rng(42)  # seed fixe -> résultats reproductibles
+
+    NB_ABONNES = 5000
+
+    prenoms = [
+        "Aminata", "Seydou", "Mariam", "Ibrahim", "Fatima", "Kofi", "Salif",
+        "Amina", "Adama", "Safi", "Binta", "Moussa", "Aissata", "Rasmane",
+        "Clarisse", "Issa", "Awa", "Boukary", "Hawa", "Yacouba", "Rokia",
+        "Hamidou", "Bintou", "Drissa", "Mamadou", "Assita", "Idrissa",
+        "Korotoumou", "Lassina", "Nathalie", "Ousmane", "Ramata", "Sibiri",
+        "Tenin", "Wendpouire", "Zalissa", "Abdoulaye", "Djeneba", "Karim",
+        "Madina",
     ]
 
-    forfaits = [
-        {"id_forfait": 1, "nom_forfait": "Orange Liberté",  "prix_fcfa": 1500,  "data_incluse_go": 2.0,  "appels_inclus": 30},
-        {"id_forfait": 2, "nom_forfait": "Orange Max 5Go",  "prix_fcfa": 3500,  "data_incluse_go": 5.0,  "appels_inclus": 60},
-        {"id_forfait": 3, "nom_forfait": "Orange Max 10Go", "prix_fcfa": 6000,  "data_incluse_go": 10.0, "appels_inclus": 120},
+    noms = [
+        "Ouedraogo", "Traore", "Sawadogo", "Kone", "Coulibaly", "Ouattara",
+        "Zongo", "Diallo", "Bambara", "Ouoba", "Kabore", "Tapsoba", "Nana",
+        "Ilboudo", "Toe", "Sanou", "Kafando", "Compaore", "Nikiema", "Yameogo",
+        "Bationo", "Sankara", "Some", "Kaboret", "Dabire", "Zoungrana",
+        "Kientega", "Bayala", "Tiendrebeogo", "Sib", "Ouili", "Konate",
+        "Diarra", "Sidibe", "Barry", "Maiga",
     ]
 
-    transactions = [
-        {"id_abonne": 1,  "montant": 5000,  "type": "envoi"},
-        {"id_abonne": 1,  "montant": 2500,  "type": "retrait"},
-        {"id_abonne": 3,  "montant": 15000, "type": "envoi"},
-        {"id_abonne": 3,  "montant": 8000,  "type": "retrait"},
-        {"id_abonne": 6,  "montant": 25000, "type": "envoi"},
-        {"id_abonne": 7,  "montant": 3000,  "type": "envoi"},
-        {"id_abonne": 9,  "montant": 12000, "type": "retrait"},
-        {"id_abonne": 11, "montant": 4500,  "type": "envoi"},
-        {"id_abonne": 12, "montant": 18000, "type": "envoi"},
-        {"id_abonne": 15, "montant": 9000,  "type": "envoi"},
-        {"id_abonne": 15, "montant": 3500,  "type": "retrait"},
+    villes = ["Ouaga", "Bobo", "Koudougou", "Banfora", "Ouahigouya", "Kaya",
+              "Tenkodogo", "Fada N'Gourma", "Dedougou", "Gaoua"]
+
+    forfaits_def = [
+        {"id_forfait": 1, "nom_forfait": "Orange Liberté",  "prix_fcfa": 1500, "data_incluse_go": 2.0,  "appels_inclus": 30},
+        {"id_forfait": 2, "nom_forfait": "Orange Max 5Go",  "prix_fcfa": 3500, "data_incluse_go": 5.0,  "appels_inclus": 60},
+        {"id_forfait": 3, "nom_forfait": "Orange Max 10Go", "prix_fcfa": 6000, "data_incluse_go": 10.0, "appels_inclus": 120},
     ]
+    forfait_par_id = {f["id_forfait"]: f for f in forfaits_def}
+
+    abonnes = []
+    for i in range(1, NB_ABONNES + 1):
+        id_forfait = int(rng.choice([1, 2, 3], p=[0.35, 0.35, 0.30]))
+        actif = bool(rng.random() < 0.75)
+
+        # Solde corrélé au forfait + un peu de hasard (et parfois 0)
+        base_solde = {1: 2000, 2: 4500, 3: 8000}[id_forfait]
+        solde = max(0, int(rng.normal(base_solde, base_solde * 0.6)))
+        if rng.random() < 0.10:
+            solde = 0
+
+        anciennete_mois = int(rng.integers(1, 60))
+
+        # Appels/data cohérents avec le forfait inclus, sauf si inactif
+        appels_inclus = forfait_par_id[id_forfait]["appels_inclus"]
+        data_incluse = forfait_par_id[id_forfait]["data_incluse_go"]
+
+        if actif:
+            appels_mois = max(0, int(rng.normal(appels_inclus * 0.7, appels_inclus * 0.3)))
+            data_go = round(max(0.0, rng.normal(data_incluse * 0.6, data_incluse * 0.3)), 1)
+        else:
+            appels_mois = int(rng.integers(0, 5))
+            data_go = round(float(rng.uniform(0, 0.5)), 1)
+
+        abonnes.append({
+            "id_abonne": i,
+            "nom": f"{rng.choice(prenoms)} {rng.choice(noms)}",
+            "ville": rng.choice(villes),
+            "solde": solde,
+            "forfait": forfait_par_id[id_forfait]["nom_forfait"],
+            "actif": actif,
+            "appels_mois": appels_mois,
+            "data_go": data_go,
+            "anciennete_mois": anciennete_mois,
+            "id_forfait": id_forfait,
+        })
+
+    forfaits = forfaits_def
+
+    # Transactions Orange Money : ~40% des abonnés en ont 1 à 3
+    transactions = []
+    for ab in abonnes:
+        if rng.random() < 0.40:
+            nb_trans = int(rng.integers(1, 4))
+            for _ in range(nb_trans):
+                transactions.append({
+                    "id_abonne": ab["id_abonne"],
+                    "montant": int(rng.integers(500, 30000)),
+                    "type": str(rng.choice(["envoi", "retrait"], p=[0.6, 0.4])),
+                })
 
     pd.DataFrame(abonnes).to_csv("../data/abonnes.csv",      index=False, encoding="utf-8")
     pd.DataFrame(forfaits).to_csv("../data/forfaits.csv",     index=False, encoding="utf-8")
     pd.DataFrame(transactions).to_csv("../data/transactions.csv", index=False, encoding="utf-8")
-    print("Fichiers CSV créés dans data")
+    print(f"Fichiers CSV créés dans data ({len(abonnes)} abonnés, {len(transactions)} transactions)")
 
 creer_donnees()
+
 
 # ============================================================
 # ÉTAPE 2 - CHARGEMENT ET EXPLORATION
 # ============================================================
 
-print("-" * 60)
+print("\n" + "-" * 60)
 print("ÉTAPE 2 - CHARGEMENT ET EXPLORATION")
 print("-" * 60)
 
@@ -92,27 +143,26 @@ print(df.info())
 # ============================================================
 # ÉTAPE 3 - NETTOYAGE DE DONNÉES
 # ============================================================
-
-print("-" * 60)
+print("\n" + "-" * 60)
 print("ÉTAPE 3 - NETTOYAGE DE DONNÉES")
 print("-" * 60)
 
 def nom_invalid(valeur):
-    if pd.isna(valeur): 
+    if pd.isna(valeur):
         return True
     valeur = str(valeur).strip()
-    if valeur == "": 
+    if valeur == "":
         return True
-    if valeur.isnumeric(): 
+    if valeur.isnumeric():
         return True
-    if re.match(r'^[#\[&@?!]', valeur): 
+    if re.match(r'^[#\[&@?!]', valeur):
         return True
-    if valeur.lower() in ["null", "n/a", "none", "-", "???"]: 
+    if valeur.lower() in ["null", "n/a", "none", "-", "???"]:
         return True
     return False
 
 def solde_invalid(valeur):
-    if pd.isna(valeur): 
+    if pd.isna(valeur):
         return True
     try:
         return float(str(valeur).strip()) < 0
@@ -147,12 +197,10 @@ def pipeline_nettoyage(df):
 
 df = pipeline_nettoyage(df)
 
-
 # ============================================================
 # ÉTAPE 4 - FILTRAGE ET SEGMENTATION
 # ============================================================
-
-print("-" * 60)
+print("\n" + "-" * 60)
 print("ÉTAPE 4 - FILTRAGE ET SEGMENTATION")
 print("-" * 60)
 
@@ -166,19 +214,20 @@ print()
 # Abonnés à risque - actifs avec solde faible
 a_risque = df[df["actif"] & (df["solde"] < 1000)]
 print(f"Abonnés à risque (actifs solde < 1000 FCFA) : {len(a_risque)}")
-print(a_risque[["nom", "ville", "solde", "anciennete_mois"]].to_string())
+print(a_risque[["nom", "ville", "solde", "anciennete_mois"]].head(10).to_string())
+print("..." if len(a_risque) > 10 else "")
 print()
 
 # Abonnés premium
 premium = df[df["actif"] & (df["solde"] >= 8000)]
 print(f"Abonnés premium (solde >= 8000 FCFA) : {len(premium)}")
-print(premium[["nom", "ville", "solde", "forfait"]].to_string())
+print(premium[["nom", "ville", "solde", "forfait"]].head(10).to_string())
+print("..." if len(premium) > 10 else "")
 
 
 # ============================================================
 # ÉTAPE 5 - AGRÉGATIONS ET KPIs PAR VILLE ET FORFAIT
 # ============================================================
-
 print("\n" + "-" * 60)
 print("ÉTAPE 5 - AGRÉGATIONS ET KPIs")
 print("-" * 60)
@@ -195,12 +244,12 @@ print()
 # Performance par ville
 print("=== PERFORMANCE PAR VILLE ===")
 perf_ville = df.groupby("ville").agg(
-    nb_abonnes = ("nom", "count"),
-    solde_moyen = ("solde", "mean"),
-    solde_total = ("solde", "sum"),
-    appels_moyens = ("appels_mois", "mean"),
-    data_moyenne = ("data_go", "mean"),
-    taux_actifs = ("actif", "mean")
+    nb_abonnes =("nom", "count"),
+    solde_moyen =("solde","mean"),
+    solde_total =("solde","sum"),
+    appels_moyens =("appels_mois","mean"),
+    data_moyenne =("data_go", "mean"),
+    taux_actifs =("actif","mean")
 ).round(2).reset_index()
 
 perf_ville["taux_actifs"] = (perf_ville["taux_actifs"] * 100).round(1)
@@ -211,10 +260,10 @@ print()
 # Performance par forfait
 print("=== PERFORMANCE PAR FORFAIT ===")
 perf_forfait = df.groupby("forfait").agg(
-    nb_abonnes = ("nom", "count"),
-    solde_moyen = ("solde", "mean"),
-    appels_moyens = ("appels_mois", "mean"),
-    data_moyenne = ("data_go", "mean")
+    nb_abonnes = ("nom","count"),
+    solde_moyen = ("solde","mean"),
+    appels_moyens = ("appels_mois","mean"),
+    data_moyenne = ("data_go","mean")
 ).round(2).reset_index()
 
 perf_forfait = perf_forfait.sort_values("solde_moyen", ascending=False)
@@ -224,7 +273,6 @@ print(perf_forfait.to_string())
 # ============================================================
 # ÉTAPE 6 - FUSION DES TABLES
 # ============================================================
-
 print("\n" + "-" * 60)
 print("ÉTAPE 6 - FUSION DES TABLES")
 print("-" * 60)
@@ -254,7 +302,6 @@ print(df_complet.groupby("type")["montant"].agg(total="sum", moyenne="mean", nom
 # ============================================================
 # ÉTAPE 7 - COLONNES CALCULÉES ET SCORE CLIENT
 # ============================================================
-
 print("\n" + "-" * 60)
 print("ÉTAPE 7 - COLONNES CALCULÉES ET SCORE CLIENT")
 print("-" * 60)
@@ -268,12 +315,9 @@ df["niveau_solde"] = np.where(
 
 # Catégorie fidélité
 def categorie_fidelite(mois):
-    if mois >= 36:   
-        return "Fidèle"
-    elif mois >= 12: 
-        return "Régulier"
-    else:            
-        return "Nouveau"
+    if mois >= 36:   return "Fidèle"
+    elif mois >= 12: return "Régulier"
+    else:            return "Nouveau"
 
 df["fidelite"] = df["anciennete_mois"].apply(categorie_fidelite)
 
@@ -291,7 +335,7 @@ def calculer_score(ligne):
     return round(
         ligne["appels_mois"] * 0.4 +
         ligne["data_go"] * 10 +
-        ligne["solde"]/1000 +
+        ligne["solde"]/ 1000 +
         ligne["anciennete_mois"] * 0.5,
         2
     )
@@ -301,14 +345,14 @@ df["score_client"] = df.apply(calculer_score, axis=1)
 # Rang
 df["rang"] = pd.cut(
     df["score_client"],
-    bins=[0, 25, 50, 75, 200],
+    bins=[0, 25, 50, 75, np.inf],
     labels=["Bronze", "Argent", "Or", "Platine"]
 )
 
-print("=== SCORES ET RANGS CLIENTS ===")
+print("=== SCORES ET RANGS CLIENTS (TOP 15) ===")
 df_scores = df.sort_values("score_client", ascending=False)
 print(df_scores[["nom", "ville", "niveau_solde",
-                  "fidelite", "score_client", "rang"]].to_string())
+                  "fidelite", "score_client", "rang"]].head(15).to_string())
 print()
 
 # Score moyen par niveau
@@ -319,18 +363,17 @@ print(df.groupby("niveau_solde")["score_client"].mean().round(2))
 # ============================================================
 # ÉTAPE 8 - RAPPORT FINAL ET EXPORT
 # ============================================================
-
 print("\n" + "-" * 60)
 print("ÉTAPE 8 - RAPPORT FINAL")
 print("-" * 60)
 
 print("=" * 60)
-print("SYNTHÈSE - ORANGE BURKINA FASO ")
+print("  SYNTHÈSE - ORANGE BURKINA FASO")
 print("=" * 60)
-print(f"Total abonnés : {len(df)}")
-print(f"Abonnés actifs : {len(df[df['actif']])} ({round(df['actif'].mean()*100,1)}%)")
-print(f"Solde moyen : {round(df['solde'].mean(),2):,} FCFA")
-print(f"Solde total : {int(df['solde'].sum()):,} FCFA")
+print(f"Total abonnés      : {len(df)}")
+print(f"Abonnés actifs     : {len(df[df['actif']])} ({round(df['actif'].mean()*100,1)}%)")
+print(f"Solde moyen        : {round(df['solde'].mean(),2):,} FCFA")
+print(f"Solde total        : {int(df['solde'].sum()):,} FCFA")
 print()
 print("Répartition par rang :")
 print(df["rang"].value_counts())
@@ -342,13 +385,13 @@ print(f"Ville la plus rentable : {perf_ville.iloc[0]['ville']}")
 print(f"Forfait le plus souscrit : {df['forfait'].value_counts().index[0]}")
 print()
 
-# Recommandations 
+# Recommandations
 print("=== RECOMMANDATIONS ===")
 nb_critique = len(df[df["niveau_solde"] == "Critique"])
 nb_inactifs = len(df[~df["actif"]])
-print(f"1. {nb_critique} abonnés en zone critique - campagne recharge urgente")
-print(f"2. {nb_inactifs} abonnés inactifs - programme réactivation ciblé")
-print(f"3. Ouaga concentre la valeur - priorité upselling Orange Max 10Go")
+print(f"1. {nb_critique} abonnés en zone critique — campagne recharge urgente")
+print(f"2. {nb_inactifs} abonnés inactifs — programme réactivation ciblé")
+print(f"3. Ouaga concentre la valeur — priorité upselling Orange Max 10Go")
 
 # Export
 rapport_final = df[[
@@ -357,12 +400,9 @@ rapport_final = df[[
     "niveau_solde", "fidelite", "score_client", "rang"
 ]].sort_values("score_client", ascending=False)
 
-rapport_final.to_csv("C:\Users\Franck SAWADOGO\Documents\VS Code-programmes\PYTHON\orange-burkina-analysis/output/rapport_final.csv",
-                     index=False, encoding="utf-8")
-perf_ville.to_csv("C:\Users\Franck SAWADOGO\Documents\VS Code-programmes\PYTHON\orange-burkina-analysis/output/performance_villes.csv",    
-                  index=False, encoding="utf-8")
-perf_forfait.to_csv("C:\Users\Franck SAWADOGO\Documents\VS Code-programmes\PYTHON\orange-burkina-analysis/output/performance_forfaits.csv", 
-                    index=False, encoding="utf-8")
+rapport_final.to_csv("../output/rapport_final.csv", index=False, encoding="utf-8")
+perf_ville.to_csv("../output/performance_villes.csv", index=False, encoding="utf-8")
+perf_forfait.to_csv("../output/performance_forfaits.csv", index=False, encoding="utf-8")
 
 print()
 print("Fichiers exportés dans output/")
@@ -370,6 +410,6 @@ print("rapport_final.csv")
 print("performance_villes.csv")
 print("performance_forfaits.csv")
 print()
-print("="* 60)
-print("  ANALYSE TERMINÉE")
+print("=" * 60)
+print("ANALYSE TERMINÉE")
 print("=" * 60)

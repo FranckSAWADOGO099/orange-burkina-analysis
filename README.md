@@ -1,13 +1,13 @@
-#  Analyse des Abonnés Orange Burkina Faso
+# 📊 Analyse des Abonnés Orange Burkina Faso
 
-Projet d'analyse de données réalisé avec **Python** et **pandas**, simulant le travail d'un data analyst junior dans un opérateur télécom.
+Projet d'analyse de données réalisé avec **Python** et **pandas**, simulant le travail d'un data analyst junior dans un opérateur télécom burkinabè.
 
 ---
 
-##  Objectif
+## 🎯 Objectif
 
 Analyser un dataset d'abonnés fictifs d'Orange Burkina Faso pour produire des insights business :
-- Générer un dataset réaliste à grande échelle (9 600 abonnés)
+- Générer un dataset réaliste à grande échelle (5 000 abonnés)
 - Nettoyer et préparer les données brutes
 - Identifier les segments d'abonnés selon leur solde et leur activité
 - Mesurer la performance par ville et par forfait
@@ -16,17 +16,13 @@ Analyser un dataset d'abonnés fictifs d'Orange Burkina Faso pour produire des i
 
 ---
 
-##  Structure du projet
+## 🗂️ Structure du projet
 
 ```
 orange-burkina-analysis/
 │
 ├── data/
-<<<<<<< HEAD
-│   ├── abonnes.csv          # Dataset principal — 9 600 abonnés générés
-=======
-│   ├── abonnes.csv          # Dataset principal - 15 abonnés fictifs
->>>>>>> 03f462cf304ec53cb3647b9b2b4d7a0787b38450
+│   ├── abonnes.csv          # Dataset principal — 5 000 abonnés générés
 │   ├── forfaits.csv         # Table des forfaits disponibles
 │   └── transactions.csv     # Historique des transactions Orange Money
 │
@@ -43,7 +39,7 @@ orange-burkina-analysis/
 
 ---
 
-## Compétences démontrées
+## 🛠️ Compétences démontrées
 
 | Compétence | Détail |
 |---|---|
@@ -58,9 +54,9 @@ orange-burkina-analysis/
 
 ---
 
-## Description des données
+## 📁 Description des données
 
-### abonnes.csv (9 600 lignes générées)
+### abonnes.csv (5 000 lignes générées)
 | Colonne | Type | Description |
 |---|---|---|
 | id_abonne | int | Identifiant unique |
@@ -91,17 +87,13 @@ orange-burkina-analysis/
 
 ---
 
-<<<<<<< HEAD
 ## 🧬 Génération du dataset
 
-Le dataset n'est plus écrit en dur : `creer_donnees()` génère 9 600 abonnés via `numpy.random.default_rng(42)` (seed fixe → résultats reproductibles d'une exécution à l'autre). Le forfait, le solde, les appels et la consommation data sont tirés de façon cohérente entre eux (ex. un abonné avec un gros forfait a un solde moyen plus élevé, un abonné inactif consomme presque rien). Environ 40 % des abonnés se voient attribuer 1 à 3 transactions Orange Money.
+Le dataset n'est plus écrit en dur : `creer_donnees()` génère 5 000 abonnés via `numpy.random.default_rng(42)` (seed fixe → résultats reproductibles d'une exécution à l'autre). Le forfait, le solde, les appels et la consommation data sont tirés de façon cohérente entre eux (ex. un abonné avec un gros forfait a un solde moyen plus élevé, un abonné inactif consomme presque rien). Environ 40 % des abonnés se voient attribuer 1 à 3 transactions Orange Money.
 
 ---
 
 ## 🚀 Comment exécuter le projet
-=======
-## Comment exécuter le projet
->>>>>>> 03f462cf304ec53cb3647b9b2b4d7a0787b38450
 
 ### Prérequis
 ```
@@ -112,7 +104,7 @@ numpy
 
 ### Installation
 ```bash
-git clone https://github.com/FranckSAWADOGO099/orange-burkina-analysis.git
+git clone https://github.com/TON_USERNAME/orange-burkina-analysis.git
 cd orange-burkina-analysis
 pip install pandas numpy
 ```
@@ -127,64 +119,64 @@ Le script crée automatiquement les dossiers `data/` et `output/` s'ils n'existe
 
 ---
 
-## Résultats principaux
+## 📈 Résultats principaux
 
 ### Segmentation des abonnés par solde
 | Segment | Critère solde | Abonnés |
 |---|---|---|
-| Standard | 3 000 – 8 000 FCFA | 3 343 |
-| Faible | 1 000 – 3 000 FCFA | 2 557 |
-| Critique | < 1 000 FCFA | 2 087 |
-| Premium | ≥ 8 000 FCFA | 1 613 |
+| Standard | 3 000 – 8 000 FCFA | 1 729 |
+| Faible | 1 000 – 3 000 FCFA | 1 352 |
+| Critique | < 1 000 FCFA | 1 068 |
+| Premium | ≥ 8 000 FCFA | 851 |
 
 ### Performance par ville (solde moyen)
 | Ville | Abonnés | Solde moyen |
 |---|---|---|
-| Tenkodogo | 976 | 4 509 FCFA |
-| Kaya | 911 | 4 390 FCFA |
-| Dedougou | 960 | 4 353 FCFA |
-| Koudougou | 981 | 4 297 FCFA |
-| Ouaga | 923 | 4 289 FCFA |
-| Banfora | 939 | 4 276 FCFA |
-| Fada N'Gourma | 985 | 4 201 FCFA |
-| Gaoua | 984 | 4 155 FCFA |
-| Ouahigouya | 964 | 4 122 FCFA |
-| Bobo | 977 | 4 113 FCFA |
+| Kaya | 453 | 4 476 FCFA |
+| Banfora | 469 | 4 389 FCFA |
+| Dedougou | 500 | 4 389 FCFA |
+| Tenkodogo | 522 | 4 388 FCFA |
+| Ouaga | 484 | 4 330 FCFA |
+| Koudougou | 513 | 4 323 FCFA |
+| Gaoua | 533 | 4 228 FCFA |
+| Bobo | 499 | 4 185 FCFA |
+| Fada N'Gourma | 517 | 4 152 FCFA |
+| Ouahigouya | 510 | 4 066 FCFA |
 
 ### Classement par score client
 | Rang | Nombre d'abonnés |
 |---|---|
-| Argent | 3 356 |
-| Platine | 2 703 |
-| Bronze | 1 796 |
-| Or | 1 745 |
+| Argent | 1 760 |
+| Platine | 1 379 |
+| Or | 935 |
+| Bronze | 926 |
 
 ### Synthèse globale
-- **Total abonnés** : 9 600
-- **Abonnés actifs** : 7 158 (74,6 %)
-- **Abonnés inactifs** : 2 442
+- **Total abonnés** : 5 000
+- **Abonnés actifs** : 3 746 (74,9 %)
+- **Abonnés inactifs** : 1 254
 - **Forfait le plus souscrit** : Orange Liberté
 
 ---
 
-## Observations
+## 💡 Observations
 
-- Les villes affichent des soldes moyens assez proches (~4 100 à 4 500 FCFA), reflet d'une génération de données équilibrée plutôt que d'un déséquilibre marqué entre grandes et petites villes
-- Près d'un quart des abonnés (2 442) sont inactifs, ce qui justifie une campagne de réactivation ciblée
-- Plus de 2 000 abonnés sont en zone critique (solde < 1 000 FCFA) — opportunité de campagne de recharge
+- Les villes affichent des soldes moyens assez proches (~4 000 à 4 500 FCFA), reflet d'une génération de données équilibrée plutôt que d'un déséquilibre marqué entre grandes et petites villes
+- Près d'un quart des abonnés (1 254) sont inactifs, ce qui justifie une campagne de réactivation ciblée
+- Plus de 1 000 abonnés sont en zone critique (solde < 1 000 FCFA) — opportunité de campagne de recharge
 - Les abonnés **Orange Max 10Go** ont en moyenne plus d'appels et plus de data consommée que les autres forfaits
 
 ---
 
-## Auteur
+## 👤 Auteur
 
-**Franck Marie Ghislain SAWADOGO**
-Étudiant GEI - IST Ouagadougou
-En formation Data Analyst
+**Franck SAWADOGO**
+Étudiant GEI — IST Ouagadougou
+En formation Data Analytics
 
 ---
 
-## Technologies utilisées
+## 📚 Technologies utilisées
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![Pandas](https://img.shields.io/badge/Pandas-2.0-green)
