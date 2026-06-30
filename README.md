@@ -1,10 +1,10 @@
-# 📊 Analyse des Abonnés Orange Burkina Faso
+#  Analyse des Abonnés Orange Burkina Faso
 
-Projet d'analyse de données réalisé avec **Python** et **pandas**, simulant le travail d'un data analyst junior dans un opérateur télécom burkinabè.
+Projet d'analyse de données réalisé avec **Python** et **pandas**, simulant le travail d'un data analyst junior dans un opérateur télécom.
 
 ---
 
-## 🎯 Objectif
+##  Objectif
 
 Analyser un dataset d'abonnés fictifs d'Orange Burkina Faso pour produire des insights business :
 - Générer un dataset réaliste à grande échelle (9 600 abonnés)
@@ -16,13 +16,17 @@ Analyser un dataset d'abonnés fictifs d'Orange Burkina Faso pour produire des i
 
 ---
 
-## 🗂️ Structure du projet
+##  Structure du projet
 
 ```
 orange-burkina-analysis/
 │
 ├── data/
+<<<<<<< HEAD
 │   ├── abonnes.csv          # Dataset principal — 9 600 abonnés générés
+=======
+│   ├── abonnes.csv          # Dataset principal - 15 abonnés fictifs
+>>>>>>> 03f462cf304ec53cb3647b9b2b4d7a0787b38450
 │   ├── forfaits.csv         # Table des forfaits disponibles
 │   └── transactions.csv     # Historique des transactions Orange Money
 │
@@ -39,7 +43,7 @@ orange-burkina-analysis/
 
 ---
 
-## 🛠️ Compétences démontrées
+## Compétences démontrées
 
 | Compétence | Détail |
 |---|---|
@@ -54,7 +58,7 @@ orange-burkina-analysis/
 
 ---
 
-## 📁 Description des données
+## Description des données
 
 ### abonnes.csv (9 600 lignes générées)
 | Colonne | Type | Description |
@@ -87,6 +91,7 @@ orange-burkina-analysis/
 
 ---
 
+<<<<<<< HEAD
 ## 🧬 Génération du dataset
 
 Le dataset n'est plus écrit en dur : `creer_donnees()` génère 9 600 abonnés via `numpy.random.default_rng(42)` (seed fixe → résultats reproductibles d'une exécution à l'autre). Le forfait, le solde, les appels et la consommation data sont tirés de façon cohérente entre eux (ex. un abonné avec un gros forfait a un solde moyen plus élevé, un abonné inactif consomme presque rien). Environ 40 % des abonnés se voient attribuer 1 à 3 transactions Orange Money.
@@ -94,6 +99,9 @@ Le dataset n'est plus écrit en dur : `creer_donnees()` génère 9 600 abonnés 
 ---
 
 ## 🚀 Comment exécuter le projet
+=======
+## Comment exécuter le projet
+>>>>>>> 03f462cf304ec53cb3647b9b2b4d7a0787b38450
 
 ### Prérequis
 ```
@@ -104,7 +112,7 @@ numpy
 
 ### Installation
 ```bash
-git clone https://github.com/TON_USERNAME/orange-burkina-analysis.git
+git clone https://github.com/FranckSAWADOGO099/orange-burkina-analysis.git
 cd orange-burkina-analysis
 pip install pandas numpy
 ```
@@ -119,7 +127,7 @@ Le script crée automatiquement les dossiers `data/` et `output/` s'ils n'existe
 
 ---
 
-## 📈 Résultats principaux
+## Résultats principaux
 
 ### Segmentation des abonnés par solde
 | Segment | Critère solde | Abonnés |
@@ -159,7 +167,7 @@ Le script crée automatiquement les dossiers `data/` et `output/` s'ils n'existe
 
 ---
 
-## 💡 Observations
+## Observations
 
 - Les villes affichent des soldes moyens assez proches (~4 100 à 4 500 FCFA), reflet d'une génération de données équilibrée plutôt que d'un déséquilibre marqué entre grandes et petites villes
 - Près d'un quart des abonnés (2 442) sont inactifs, ce qui justifie une campagne de réactivation ciblée
@@ -168,15 +176,15 @@ Le script crée automatiquement les dossiers `data/` et `output/` s'ils n'existe
 
 ---
 
-## 👤 Auteur
+## Auteur
 
-**Franck SAWADOGO**
-Étudiant GEI — IST Ouagadougou
-En formation Data Analytics
+**Franck Marie Ghislain SAWADOGO**
+Étudiant GEI - IST Ouagadougou
+En formation Data Analyst
 
 ---
 
-## 📚 Technologies utilisées
+## Technologies utilisées
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![Pandas](https://img.shields.io/badge/Pandas-2.0-green)
