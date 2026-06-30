@@ -1,6 +1,6 @@
 #  Analyse des Abonnés Orange Burkina Faso
 
-Projet d'analyse de données réalisé avec **Python** et **pandas**, simulant le travail d'un data analyst junior dans un opérateur télécom burkinabè.
+Projet d'analyse de données réalisé avec **Python** et **pandas**, simulant le travail d'un data analyst junior dans un opérateur télécom.
 
 ---
 
