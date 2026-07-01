@@ -176,7 +176,7 @@ En formation Data Analytics
 
 ---
 
-## 📚 Technologies utilisées
+## Technologies utilisées
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![Pandas](https://img.shields.io/badge/Pandas-2.0-green)
