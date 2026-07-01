@@ -1,10 +1,10 @@
-# 📊 Analyse des Abonnés Orange Burkina Faso
+# Analyse des Abonnés Orange Burkina Faso
 
 Projet d'analyse de données réalisé avec **Python** et **pandas**, simulant le travail d'un data analyst junior dans un opérateur télécom burkinabè.
 
 ---
 
-## 🎯 Objectif
+## Objectif
 
 Analyser un dataset d'abonnés fictifs d'Orange Burkina Faso pour produire des insights business :
 - Générer un dataset réaliste à grande échelle (5 000 abonnés)
@@ -16,7 +16,7 @@ Analyser un dataset d'abonnés fictifs d'Orange Burkina Faso pour produire des i
 
 ---
 
-## 🗂️ Structure du projet
+##  Structure du projet
 
 ```
 orange-burkina-analysis/
@@ -39,7 +39,7 @@ orange-burkina-analysis/
 
 ---
 
-## 🛠️ Compétences démontrées
+## Compétences démontrées
 
 | Compétence | Détail |
 |---|---|
@@ -54,7 +54,7 @@ orange-burkina-analysis/
 
 ---
 
-## 📁 Description des données
+## Description des données
 
 ### abonnes.csv (5 000 lignes générées)
 | Colonne | Type | Description |
@@ -87,13 +87,13 @@ orange-burkina-analysis/
 
 ---
 
-## 🧬 Génération du dataset
+## Génération du dataset
 
 Le dataset n'est plus écrit en dur : `creer_donnees()` génère 5 000 abonnés via `numpy.random.default_rng(42)` (seed fixe → résultats reproductibles d'une exécution à l'autre). Le forfait, le solde, les appels et la consommation data sont tirés de façon cohérente entre eux (ex. un abonné avec un gros forfait a un solde moyen plus élevé, un abonné inactif consomme presque rien). Environ 40 % des abonnés se voient attribuer 1 à 3 transactions Orange Money.
 
 ---
 
-## 🚀 Comment exécuter le projet
+## Comment exécuter le projet
 
 ### Prérequis
 ```
@@ -159,7 +159,7 @@ Le script crée automatiquement les dossiers `data/` et `output/` s'ils n'existe
 
 ---
 
-## 💡 Observations
+## Observations
 
 - Les villes affichent des soldes moyens assez proches (~4 000 à 4 500 FCFA), reflet d'une génération de données équilibrée plutôt que d'un déséquilibre marqué entre grandes et petites villes
 - Près d'un quart des abonnés (1 254) sont inactifs, ce qui justifie une campagne de réactivation ciblée
@@ -168,7 +168,7 @@ Le script crée automatiquement les dossiers `data/` et `output/` s'ils n'existe
 
 ---
 
-## 👤 Auteur
+##  Auteur
 
 **Franck SAWADOGO**
 Étudiant GEI — IST Ouagadougou
